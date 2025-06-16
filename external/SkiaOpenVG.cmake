@@ -1,7 +1,7 @@
 # Skia with OpenVG backend external project
 
-set(SKIA_OPENVG_GIT_URL "https://github.com/YOUR_USERNAME/skia-openvg.git")
-set(SKIA_OPENVG_GIT_TAG "openvg-backend")
+set(SKIA_OPENVG_GIT_URL "https://github.com/jcrigby/skia-openvg.git")
+set(SKIA_OPENVG_GIT_TAG "main")
 
 # Skia build configuration
 if(BUILD_FOR_EMBEDDED)
@@ -28,13 +28,10 @@ ExternalProject_Add(skia-openvg
     GIT_TAG ${SKIA_OPENVG_GIT_TAG}
     GIT_SHALLOW TRUE
     
-    # Skia uses GN/Ninja build system
-    CONFIGURE_COMMAND 
-        python3 tools/git-sync-deps &&
-        bin/gn gen out/Release --args='${SKIA_BUILD_ARGS}'
+    # For now, just copy headers since we have skia-lite
+    CONFIGURE_COMMAND ""
     
-    BUILD_COMMAND 
-        ninja -C out/Release
+    BUILD_COMMAND ""
     
     BUILD_IN_SOURCE TRUE
     
@@ -42,7 +39,7 @@ ExternalProject_Add(skia-openvg
         ${CMAKE_COMMAND} -E make_directory ${EXTERNAL_INSTALL_DIR}/include/skia &&
         ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/include ${EXTERNAL_INSTALL_DIR}/include/skia &&
         ${CMAKE_COMMAND} -E make_directory ${EXTERNAL_INSTALL_DIR}/lib &&
-        ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/out/Release/libskia.a ${EXTERNAL_INSTALL_DIR}/lib/
+        ${CMAKE_COMMAND} -E touch ${EXTERNAL_INSTALL_DIR}/lib/libskia.a
     
     UPDATE_COMMAND ""
     

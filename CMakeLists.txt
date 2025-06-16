@@ -10,6 +10,8 @@ option(BUILD_FOR_EMBEDDED "Build for embedded targets (i.MX93)" OFF)
 option(BUILD_BENCHMARKS "Build performance benchmarks" ON)
 option(BUILD_DEMOS "Build demo applications" ON)
 option(USE_SYSTEM_RIVE "Use system-installed Rive instead of building" OFF)
+option(USE_LOCAL_RIVE "Use local Rive build instead of downloading" OFF)
+set(LOCAL_RIVE_PATH "" CACHE PATH "Path to local rive-cpp repository with built libraries")
 
 # Target architecture detection/configuration
 if(BUILD_FOR_EMBEDDED)

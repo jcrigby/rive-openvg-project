@@ -43,6 +43,7 @@ include_directories(
 # Console benchmark (no graphics)
 add_executable(rive_console_benchmark
     console_benchmark.cpp
+    ${CMAKE_PREFIX_PATH}/src/rive/utils/no_op_factory.cpp
 )
 
 target_link_libraries(rive_console_benchmark
@@ -54,6 +55,7 @@ target_link_libraries(rive_console_benchmark
 if(NOT TARGET_PLATFORM STREQUAL "imx93")
     add_executable(rive_visual_benchmark
         visual_benchmark.cpp
+        ${CMAKE_PREFIX_PATH}/src/rive/utils/no_op_factory.cpp
     )
     
     target_link_libraries(rive_visual_benchmark
